@@ -40,6 +40,7 @@ The main aim in this Project is to control a vehicle in a track using Udacity Si
 
 ## Rubric points:
 -------------------------------------------------------------
+
 ### 1. Compilation
 -----------------------------
 
@@ -48,33 +49,34 @@ The code compiled successfully using cmake and make.
 ### 2. Implementation:
 -----------------------------
 
-#### 1. The Model
+#### **The Model**
 
+The model equations are constructed based on a Kinematic model, The following are the used equations in the model.
 
-#### 2. Timestep Length and Elapsed Duration (N & dt)
+![alt text][image1]
 
-Following are my chosen Coefficients:
+#### **Timestep Length and Elapsed Duration (N & dt)**
 
-| MPC Coefficients | Coefficients Values  |
-|:----------------:|:--------------------:|
-| N                |          14          |
-| dt               |         0.04         |
-| ref_v            |          70          |
+The number of points **N** and the time interval **dt** define the prediction area and completely affect the MPC Performance. I have tried a large value of **N** but that made the vehicle runs slowly and also drifted away from the track. So I kept decreasing the values until I reached the most optimal values that made the vehicle inside the track. Then I tried to increase the max. speed values from 40 till I reached the max speed of 70.
 
-#### 3. Polynomial Fitting and MPC Preprocessing
+Following are my chosen Variables Values :
 
+| Variable Name    | Variable Value  |
+|:----------------:|:---------------:|
+|         N        |       14        |
+|        dt        |      0.04       |
+|       ref_v      |       70        |
 
-
-
-#### 4. Model Predictive Control with Latency
+#### **Polynomial Fitting and MPC Preprocessing**
 
 The incoming waypoints from the simulator are transformed to be in the vehicle coordinates. These points are then fitted to a 3rd order polynomial equation so we can get the right coefficients to be able to calculate CTE & EPSI.
+
+#### **Model Predictive Control with Latency**
+
+As the kinematic equations depend on the previous time stamps and as our system can suffer from several delays such as communications delays or actuators delays, We have introduced some delay (100ms) in order to make our system more realistic.
 
 
 ### 3. Simulation:
 -----------------------------
-
-
-
 
 The following ![video][video1] shows a full lap using the above MPC controller.
