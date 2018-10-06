@@ -3,21 +3,12 @@
 ## Overview
 -------------------
 
-
-
-## Model Predictive Controller Project Goals
--------------------------------------------------------------
-
-**The goals / steps of this project are the following:**
-
-  1.  
-  2. 
-  3. 
+The main aim in this Project is to control a vehicle in a track using Udacity Simulator by design a Model Predictive Controller (MPC). We will make use of IPOPT & CPPAD Libraries to get the most correct trajectory by feeding a 3rd polynomial function with the waypoints received from Udacity Simulator and then feed them into our model to be able to return the correct Steering angle and acceleration.
 
 [//]: # (Image References)
 
-[image1]: ./PID_Design.png
-[video1]: ./PID_Output.mp4
+[image1]: ./MPC_Model.png
+[video1]: ./MPC_OutputVideo.mp4
 
 ## Dependencies
 
@@ -57,36 +48,33 @@ The code compiled successfully using cmake and make.
 ### 2. Implementation:
 -----------------------------
 
-
-### 3. Reflection:
-------------------------------
-
-#### PID Description
+#### 1. The Model
 
 
-##### 1. Proportional Controller
-
-
-##### 2. Integral Controller
-
-
-
-##### 3. Derivative Controller
-
-
-
-#### Tuning PID Coefficients
-
-
+#### 2. Timestep Length and Elapsed Duration (N & dt)
 
 Following are my chosen Coefficients:
 
-| PID Coefficients | Coefficients Values  |
+| MPC Coefficients | Coefficients Values  |
 |:----------------:|:--------------------:|
-| KP_coff          |          0.1         |
-| KI_coff          |          0.001       |
-| KD_coff          |          1.4         |
+| N                |          14          |
+| dt               |         0.04         |
+| ref_v            |          70          |
 
-For the throttle, I have designed a PID controller for it as well, but I found that setting it by 0.25 with the above parameters is working perfectly.
+#### 3. Polynomial Fitting and MPC Preprocessing
 
-This ![video][video1] shows a full lap using the above PID controller.
+
+
+
+#### 4. Model Predictive Control with Latency
+
+The incoming waypoints from the simulator are transformed to be in the vehicle coordinates. These points are then fitted to a 3rd order polynomial equation so we can get the right coefficients to be able to calculate CTE & EPSI.
+
+
+### 3. Simulation:
+-----------------------------
+
+
+
+
+The following ![video][video1] shows a full lap using the above MPC controller.

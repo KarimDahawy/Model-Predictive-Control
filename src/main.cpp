@@ -113,22 +113,12 @@ int main() {
           auto coeffs = polyfit(waypoints_x, waypoints_y, 3);
 
           // Initial state.
-          // double x0 = 0;
-          // double y0 = 0;
-          // double psi0 = 0;
           double cte0 = coeffs[0];
           double epsi0 = -atan(coeffs[1]);
           double dt = 0.1;
           double Lf = 2.67;
 
           // Updated State.
-          // double x1 = x0 + ( v * cos(psi0) * dt );
-          // double y1 = y0 + ( v * sin(psi0) * dt );
-          // double psi1 = psi0 - ( v * steer_value * dt / Lf );
-          // double v1 = v + throttle_value * dt;
-          // double cte1 = cte0 + ( v * sin(epsi0) * dt );
-          // double epsi1 = epsi0 - ( v * atan(coeffs[1]) * dt / Lf );
-
           double x1 = v * dt;
           double y1 = 0;
           double psi1 = -v * steer_value * dt / Lf;
