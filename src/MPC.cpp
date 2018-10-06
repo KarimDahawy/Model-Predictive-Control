@@ -22,7 +22,7 @@ double dt = 0.04;
 const double Lf = 2.67;
 
 // Max. Speed
-const double ref_v = 40;
+const double ref_v = 70;
 
 // The solver takes all the state variables and actuator
 // variables in a singular vector. Thus, we should to establish
